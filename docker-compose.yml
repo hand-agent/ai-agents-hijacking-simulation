@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  vulnerable-agent:
+    build: .
+    ports:
+      - "8000:8000"
+    extra_hosts:
+      # This allows the container to reach Ollama running on your host machine
+      - "host.docker.internal:host-gateway" 
+    environment:
+      - OLLAMA_URL=http://host.docker.internal:11434
+      - OLLAMA_MODEL=dolphin-phi:latest # Change this to whatever model you pulled in Ollama
